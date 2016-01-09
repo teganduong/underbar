@@ -200,10 +200,9 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
-    for (var i = 0; i < collection.length; i++) {
-      if (collection[i]) {return true;}
-    }
-    return false;
+    return !_.every(collection, function(val) {
+      return (iterator == undefined) ? !Boolean(val) : !iterator(val);
+    });
   };
 
 
