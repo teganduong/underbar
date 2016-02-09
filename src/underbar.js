@@ -93,12 +93,11 @@
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
-    var rejected = [];
-    for (var i = 0; i < collection.length; i++) {
-      if (!test(collection[i]))
-        rejected.push(collection[i]);
-    }
-    return rejected;
+    return _.filter(collection, function(element) {
+      if (!test(element)) {
+        return element;
+      }
+    });
   };
 
   // Produce a duplicate-free version of the array.
