@@ -434,5 +434,17 @@
   //
   // Note: This is difficult! It may take a while to implement.
   _.throttle = function(func, wait) {
+    var counter = 0;
+    var calledOnce = false;
+    setInterval(function() {
+      counter++;
+    }, 1);
+    return function() {
+      if (counter > wait || !calledOnce) {
+        calledOnce = true;
+        counter = 0;
+        return func.apply(this, arguments);
+      }
+    };
   };
 }());
